@@ -17,13 +17,18 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/workouts', workoutRoutes);
 
-// connect to db
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
+// connect to db and start the server
+const startServer = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_URI);
+
         app.listen(process.env.PORT, () => {
             console.log('listening on port', process.env.PORT);
         });
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+    } catch (error) {
+        console.error('Database connection failed:', error.message);
+        process.exit(1);
+    }
+};
+
+startServer();
