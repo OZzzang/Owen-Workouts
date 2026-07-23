@@ -1,0 +1,324 @@
+/* ============================================================
+   Owen Workouts — Modern Green Theme
+   Styled against the class names actually used in the app:
+   .App, .pages, header, .container, .home, .workouts,
+   .workout-details
+   ============================================================ */
+
+/* ----- Design tokens ----- */
+:root {
+  /* Brand greens */
+  --green-950: #0d2e1c;
+  --green-900: #14432a;
+  --green-800: #175f39;
+  --green-700: #1b7a43;
+  --green-600: #22a05a;
+  --green-500: #2ecc71;
+  --green-400: #52d98a;
+  --green-300: #8be0ac;
+  --green-200: #bff0d3;
+  --green-100: #e6f7ee;
+
+  /* Neutrals */
+  --bg: #f3f8f5;
+  --surface: #ffffff;
+  --surface-alt: #f7fbf8;
+  --text: #16241d;
+  --text-muted: #5c6f64;
+  --border: #e0ede6;
+
+  /* Accents */
+  --danger: #e5484d;
+  --danger-bg: #fce9ea;
+
+  /* Effects */
+  --shadow-sm: 0 1px 2px rgba(13, 46, 28, 0.06);
+  --shadow: 0 6px 20px rgba(13, 46, 28, 0.08);
+  --shadow-lg: 0 16px 40px rgba(13, 46, 28, 0.14);
+  --gradient: linear-gradient(135deg, var(--green-700) 0%, var(--green-500) 100%);
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+
+  --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----- Reset ----- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--green-700);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--green-600);
+}
+
+/* ----- App shell ----- */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pages {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  flex: 1;
+}
+
+/* ----- Navbar (header > .container > a > h1) ----- */
+header {
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+header .container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1.1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+header h1 {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+header h1::before {
+  content: "💪";
+  font-size: 1.4rem;
+}
+
+/* ----- Home layout ----- */
+.home {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ----- Workouts list ----- */
+.workouts {
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* ----- Workout card (.workout-details) ----- */
+.workout-details {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+  overflow: hidden;
+}
+
+.workout-details::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--gradient);
+}
+
+.workout-details:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--green-200);
+}
+
+.workout-details h4 {
+  color: var(--green-800);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.workout-details p {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+}
+
+.workout-details p strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Timestamp row */
+.workout-details p.created {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  color: var(--green-600);
+  font-weight: 600;
+}
+
+/* ----- Workout form (form.create) ----- */
+form.create {
+  position: sticky;
+  top: 6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+form.create h3 {
+  color: var(--green-950);
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+
+form.create label {
+  display: block;
+  margin: 1rem 0 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+form.create input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface-alt);
+  transition: border-color var(--transition), box-shadow var(--transition),
+    background var(--transition);
+}
+
+form.create input:focus {
+  outline: none;
+  border-color: var(--green-500);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px var(--green-100);
+}
+
+form.create button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 1.75rem;
+  box-shadow: 0 4px 12px rgba(34, 160, 90, 0.3);
+  transition: transform var(--transition), box-shadow var(--transition),
+    filter var(--transition);
+}
+
+form.create button:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 6px 18px rgba(34, 160, 90, 0.4);
+  transform: translateY(-1px);
+}
+
+form.create button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(34, 160, 90, 0.35);
+}
+
+form.create button:focus-visible {
+  outline: 3px solid var(--green-300);
+  outline-offset: 2px;
+}
+
+/* Error message */
+.error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 820px) {
+  .home {
+    grid-template-columns: 1fr;
+  }
+
+  form.create {
+    position: static;
+  }
+
+  header .container {
+    padding: 1rem 1.25rem;
+  }
+
+  .pages {
+    padding: 1.5rem 1rem 3rem;
+  }
+}
