@@ -209,6 +209,41 @@ header h1::before {
   font-weight: 600;
 }
 
+/* Delete button (span) */
+.workout-details span {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-700);
+  font-size: 0;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition),
+    transform var(--transition);
+}
+
+.workout-details span::before {
+  content: "🗑";
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.workout-details span:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+  transform: scale(1.1);
+}
+
+.workout-details span:active {
+  transform: scale(0.95);
+}
+
 /* ----- Workout form (form.create) ----- */
 form.create {
   position: sticky;
@@ -253,6 +288,20 @@ form.create input:focus {
   border-color: var(--green-500);
   background: var(--surface);
   box-shadow: 0 0 0 4px var(--green-100);
+}
+
+/* Empty / invalid field highlight */
+form.create input.error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-color: var(--danger);
+  background: var(--danger-bg);
+  box-shadow: 0 0 0 4px rgba(229, 72, 77, 0.15);
+}
+
+form.create input.error:focus {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 4px rgba(229, 72, 77, 0.25);
 }
 
 form.create button {
